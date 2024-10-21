@@ -47,7 +47,26 @@
         .button:hover {
             background-color: #4cae4c;
         }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-box {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
     </style>
+    <script>
+        function searchContent() {
+            const query = document.getElementById("search-input").value.toLowerCase();
+            const items = document.querySelectorAll(".searchable");
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(query) ? "block" : "none";
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -55,11 +74,21 @@
     </header>
 
     <div class="content">
-        <h2>Що таке цей бот?</h2>
-        <p>Цей бот дозволяє вам відповідати на питання, отримувати характеристики, та аналізувати ваші відповіді. Ви можете також редагувати питання та переглядати свої відповіді.</p>
-        
-        <h2>Кнопки меню</h2>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-box" placeholder="Пошук..." oninput="searchContent()">
+        </div>
+
+        <h2>Зміст</h2>
         <ul>
+            <li><a href="#bot-description">Що таке цей бот?</a></li>
+            <li><a href="#menu-buttons">Кнопки меню</a></li>
+        </ul>
+
+        <h2 id="bot-description">Що таке цей бот?</h2>
+        <p class="searchable">Цей бот дозволяє вам відповідати на питання, отримувати характеристики, та аналізувати ваші відповіді. Ви можете також редагувати питання та переглядати свої відповіді.</p>
+        
+        <h2 id="menu-buttons">Кнопки меню</h2>
+        <ul class="searchable">
             <li>
                 <strong>Характеристика ідеального партнера</strong>: 
                 <p>Отримайте опис ідеального партнера на основі ваших відповідей. Після завершення опитування, бот проаналізує ваші відповіді та надасть детальний звіт про ваші уподобання та бажання в партнері.</p>
